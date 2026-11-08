@@ -1,0 +1,45 @@
+{
+  "id": "le-rucher-des-cimes",
+  "order": 3,
+  "name": "Le Rucher des Cimes",
+  "tagline": "Miel de montagne, pain d'épices et nougat",
+  "category": "gourmand",
+  "website": "https://example.com/le-rucher-des-cimes",
+  "owner": {
+    "name": "Élias Moreau",
+    "role": "Apiculteur",
+    "bio": "Élias veille sur 120 ruches perchées entre 900 et 1 600 mètres. Il parle de ses abeilles comme d'une grande famille.",
+    "mood": "sage",
+    "voicePitch": 0.85,
+    "appearance": { "skin": "#b97a56", "hair": "#2b1d16", "hairStyle": "curly", "outfit": "vest", "outfitColor": "#c98a2e", "outfitColor2": "#3b3340", "scarf": "#2f5d50", "hat": "beanie", "hatColor": "#e2b34a", "beard": "#2b1d16" },
+    "greetings": ["Bonsoir. Goûte-moi ce miel de sapin, tu m'en diras des nouvelles.", "Bienvenue au Rucher. Mes abeilles dorment, mais leur miel, lui, est bien réveillé."],
+    "farewells": ["Prends soin de toi, et des abeilles.", "Bonne soirée, et une cuillère de miel avant de dormir !"]
+  },
+  "chalet": { "wood": "#8a5a3b", "roof": "#5a3a2a", "accent": "#e2b34a", "garland": "warm", "awning": "stripes", "awningColors": ["#e2b34a", "#5c3a26"] },
+  "decorations": [
+    { "type": "crate-apples", "slot": "ground-left" },
+    { "type": "star-sign", "slot": "roof-ridge" },
+    { "type": "lantern", "slot": "front-right" },
+    { "type": "mini-tree", "slot": "ground-right" },
+    { "type": "chalkboard", "slot": "side-left", "text": "Miel de sapin 2026" }
+  ],
+  "products": [
+    { "id": "miel-sapin", "name": "Miel de sapin", "price": 14, "image": "/demo/products/honey.svg", "description": "Pot de 500 g, récolte d'août, très foncé et malté.", "featured": true },
+    { "id": "pain-epices", "name": "Pain d'épices au miel", "price": 9.5, "image": "/demo/products/gingerbread-loaf.svg", "description": "50 % de miel, seigle et sept épices, 400 g." },
+    { "id": "nougat", "name": "Nougat tendre", "price": 7, "image": "/demo/products/nougat.svg", "description": "Miel de lavande, amandes et pistaches, barre de 150 g." },
+    { "id": "hydromel", "name": "Hydromel des Cimes", "price": 18, "image": "/demo/products/mead.svg", "description": "Vin de miel doux, 75 cl. À consommer avec modération." }
+  ],
+  "knowledge": {
+    "description": "Mes ruches sont réparties en altitude, entre les prés fleuris de 900 mètres et les forêts de sapins à 1 600 mètres. Je pratique une apiculture douce : pas de nourrissement au sucre, des abeilles noires locales, et je ne récolte que le surplus.\n\nLe miel de sapin est le plus rare : il vient du miellat que les abeilles récoltent sur les sapins en été. Il est très foncé, peu sucré, presque malté. Le pain d'épices, je le fais avec la recette de mon grand-père, avec 50 % de miel et de la farine de seigle.",
+    "faq": [
+      { "q": "Votre miel est-il bio ?", "a": "Mes ruchers sont certifiés bio depuis 2019 : les ruches sont en bois non traité et les zones de butinage loin des cultures." },
+      { "q": "Pourquoi mon miel cristallise ?", "a": "C'est naturel et c'est même un gage de qualité ! Un bain-marie doux à 40 °C le rend liquide à nouveau." },
+      { "q": "Peut-on visiter les ruches ?", "a": "Oui, de mai à septembre, je fais des visites du rucher en tenue d'apiculteur le dimanche matin. Réservation sur mon site." }
+    ],
+    "facts": [
+      { "topic": "livraison", "text": "Je livre en point relais partout en France, colis protégé, gratuit dès 40 €." },
+      { "topic": "allergènes", "text": "Le nougat contient des fruits à coque. Le pain d'épices contient du gluten (seigle)." },
+      { "topic": "prix", "text": "Le nougat est à 7 €, le pain d'épices à 9,50 €, le miel de sapin à 14 € et l'hydromel à 18 €." }
+    ]
+  }
+}

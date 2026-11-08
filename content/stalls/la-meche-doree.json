@@ -1,0 +1,55 @@
+{
+  "id": "la-meche-doree",
+  "order": 1,
+  "name": "La Mèche Dorée",
+  "tagline": "Bougies parfumées coulées à la main, à la cire de colza",
+  "category": "artisanat",
+  "website": "https://example.com/la-meche-doree",
+  "links": [
+    { "label": "Instagram", "url": "https://example.com/la-meche-doree/instagram", "kind": "instagram" },
+    { "label": "Écrire à Margot", "url": "mailto:bonjour@example.com", "kind": "mail" }
+  ],
+  "owner": {
+    "name": "Margot Lenoir",
+    "role": "Ciergière",
+    "bio": "Margot coule ses bougies dans l'ancienne laiterie de Givrelune depuis 2016. Elle compose chaque parfum comme un souvenir d'hiver.",
+    "mood": "chaleureux",
+    "voicePitch": 1.1,
+    "appearance": { "skin": "#f1cdb3", "hair": "#8a5a35", "hairStyle": "long", "outfit": "sweater", "outfitColor": "#c98a2e", "outfitColor2": "#4b3a2e", "scarf": "#b8413a", "hat": "beret", "hatColor": "#6b3b33" },
+    "greetings": [
+      "Bonsoir ! Approche, sens un peu… c'est « Forêt sous la neige », ma préférée de l'hiver.",
+      "Oh, bienvenue à La Mèche Dorée ! Fais attention, ça sent tellement bon qu'on a du mal à repartir."
+    ],
+    "farewells": ["Que tes soirées soient douces et bien éclairées !", "À bientôt, et pense à couper la mèche à 5 millimètres !"]
+  },
+  "chalet": { "wood": "#9b6a45", "roof": "#6b3b33", "accent": "#c98a2e", "garland": "warm", "awning": "stripes", "awningColors": ["#c98a2e", "#f3ead8"], "signColor": "#2a1d17", "signTextColor": "#f3d27a" },
+  "decorations": [
+    { "type": "candles", "slot": "counter-left" },
+    { "type": "wreath", "slot": "sign" },
+    { "type": "lantern", "slot": "front-left" },
+    { "type": "lantern", "slot": "front-right" },
+    { "type": "chalkboard", "slot": "ground-right", "text": "Bougies coulées main" },
+    { "type": "pinecones", "slot": "counter-right" }
+  ],
+  "products": [
+    { "id": "foret-neige", "name": "Bougie « Forêt sous la neige »", "price": 24, "image": "/demo/products/candle-forest.svg", "url": "https://example.com/la-meche-doree/foret-sous-la-neige", "description": "Sapin, cèdre et une pointe de mandarine. 40 heures de combustion.", "featured": true },
+    { "id": "pain-epices", "name": "Bougie « Pain d'épices »", "price": 19, "image": "/demo/products/candle-gingerbread.svg", "url": "https://example.com/la-meche-doree/pain-d-epices", "description": "Cannelle, miel et clou de girofle, dans un pot en verre ambré." },
+    { "id": "nuit-givre", "name": "Bougie « Nuit de givre »", "price": 28, "image": "/demo/products/candle-frost.svg", "url": "https://example.com/la-meche-doree/nuit-de-givre", "description": "Menthe poivrée et fève tonka, mèche en bois qui crépite." },
+    { "id": "fondants", "name": "Coffret de fondants", "price": "12,50 €", "image": "/demo/products/wax-melts.svg", "url": "https://example.com/la-meche-doree/fondants", "description": "Six fondants parfumés pour brûle-parfum." }
+  ],
+  "knowledge": {
+    "description": "Je fabrique toutes mes bougies à la main, dans mon atelier installé dans l'ancienne laiterie de Givrelune. J'utilise de la cire de colza cultivé en France, des mèches en coton ou en bois, et des parfums de Grasse sans CMR.\n\nChaque bougie est coulée, refroidie lentement pendant 48 heures puis laissée à maturer deux semaines avant d'être vendue : c'est ce qui donne un parfum généreux dès le premier allumage.\n\nJ'ai commencé en 2016 après avoir retrouvé le carnet de recettes de ma grand-mère, qui faisait des cierges pour la chapelle du village. Mes pots sont consignés : rapporte ton pot vide et je te fais 2 € de réduction sur la suivante.",
+    "faq": [
+      { "q": "Combien de temps dure une bougie ?", "a": "Entre 35 et 45 heures pour le grand pot, environ 20 heures pour le petit." },
+      { "q": "Livrez-vous ?", "a": "Oui ! J'expédie partout en France en Colissimo sous 3 jours, et la livraison est offerte dès 50 € d'achat." },
+      { "q": "Comment bien utiliser une bougie ?", "a": "Laisse-la brûler au moins deux heures la première fois pour que toute la surface fonde, et coupe la mèche à 5 mm à chaque allumage." },
+      { "q": "Faites-vous des bougies personnalisées ?", "a": "Oui, pour les mariages et les cadeaux d'entreprise, à partir de vingt bougies. Écris-moi depuis mon site." }
+    ],
+    "facts": [
+      { "topic": "matières", "text": "Cire de colza française, mèches en coton ou en bois, parfums de Grasse sans CMR, pots en verre recyclé." },
+      { "topic": "horaires", "text": "La cabane est ouverte tous les soirs du marché, de 16 h à 22 h. L'atelier se visite le samedi matin." },
+      { "topic": "prix", "text": "Mes bougies vont de 12,50 € pour les fondants à 28 € pour la grande Nuit de givre." },
+      { "topic": "contact", "text": "On peut m'écrire à bonjour@example.com ou passer à l'atelier, 3 rue de la Laiterie." }
+    ]
+  }
+}

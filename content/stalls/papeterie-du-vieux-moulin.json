@@ -1,0 +1,69 @@
+{
+  "id": "papeterie-du-vieux-moulin",
+  "order": 7,
+  "name": "Papeterie du Vieux Moulin",
+  "tagline": "Cartes de vœux gravées, carnets cousus main et calligraphie",
+  "category": "papeterie",
+  "website": "https://example.com/papeterie-du-vieux-moulin",
+  "links": [
+    { "label": "Boutique en ligne", "url": "https://example.com/papeterie-du-vieux-moulin/boutique", "kind": "site" },
+    { "label": "Instagram", "url": "https://example.com/papeterie-du-vieux-moulin/instagram", "kind": "instagram" },
+    { "label": "Démonstrations de calligraphie", "url": "https://example.com/papeterie-du-vieux-moulin/videos", "kind": "youtube" }
+  ],
+  "owner": {
+    "name": "Albane Duval",
+    "role": "Graveuse & calligraphe",
+    "bio": "Albane grave le cuivre et imprime ses cartes sur une presse à bras de 1890, dans le vieux moulin à papier du village. Elle parle peu, mais ses cartes disent tout.",
+    "mood": "timide",
+    "voicePitch": 1.24,
+    "appearance": { "skin": "#f6d7c3", "hair": "#7a4a30", "hairStyle": "bob", "outfit": "coat", "outfitColor": "#34406a", "outfitColor2": "#2a1d17", "scarf": "#f2efe6", "hat": "beret", "hatColor": "#8b2c2a", "accessory": "round-glasses", "height": 0.94, "build": 0.9 },
+    "greetings": [
+      "Oh… bonsoir. Tu peux toucher les cartes, si tu veux. Le relief, c'est… c'est le plus joli.",
+      "Ah, pardon, j'étais dans mes encres. Bienvenue au Vieux Moulin.",
+      "Bonsoir… Chaque carte est imprimée une par une. Prends ton temps, rien ne presse. Enfin… sauf la presse. Mais elle est restée à l'atelier."
+    ],
+    "farewells": [
+      "Merci de ta visite… Écris une vraie lettre cette année, d'accord ?",
+      "Bonne soirée… Que tes vœux arrivent à bon port."
+    ]
+  },
+  "chalet": {
+    "wood": "#7a4e33",
+    "roof": "#34406a",
+    "accent": "#e2b34a",
+    "garland": "warm",
+    "awning": "plain",
+    "awningColors": ["#3c5a8a", "#f3ead8"],
+    "signColor": "#f3ead8",
+    "signTextColor": "#2a3463",
+    "snow": true
+  },
+  "decorations": [
+    { "type": "star-sign", "slot": "roof-ridge", "text": "Vœux" },
+    { "type": "wreath", "slot": "sign" },
+    { "type": "lantern", "slot": "front-left" },
+    { "type": "ribbon", "slot": "counter-left" },
+    { "type": "mini-tree", "slot": "ground-left" },
+    { "type": "chalkboard", "slot": "side-right", "text": "Gravé & imprimé main" }
+  ],
+  "products": [
+    { "id": "cartes-moulin-neige", "name": "Cartes de vœux « Moulin sous la neige »", "price": 28, "image": "/demo/products/greeting-cards.svg", "url": "https://example.com/papeterie-du-vieux-moulin/cartes-moulin-sous-la-neige", "description": "Lot de 5 cartes gravées sur cuivre et imprimées en taille-douce, avec leurs enveloppes bleu nuit.", "featured": true },
+    { "id": "carnet-nuit-etoilee", "name": "Carnet « Nuit étoilée »", "price": 22, "image": "/demo/products/notebook.svg", "url": "https://example.com/papeterie-du-vieux-moulin/carnet-nuit-etoilee", "description": "A5, 160 pages de papier ivoire 120 g, cousu main, couverture toilée et dorure à chaud, élastique et signet." },
+    { "id": "kit-calligraphie", "name": "Kit de calligraphie", "price": 45, "image": "/demo/products/calligraphy-kit.svg", "url": "https://example.com/papeterie-du-vieux-moulin/kit-calligraphie", "description": "Porte-plume en noyer, trois plumes, un flacon d'encre de noix et un cahier d'exercices pour débuter l'anglaise." },
+    { "id": "cachet-flocon", "name": "Cachet de cire « Flocon »", "price": "18,50 €", "image": "/demo/products/wax-seal.svg", "url": "https://example.com/papeterie-du-vieux-moulin/cachet-flocon", "description": "Sceau en laiton gravé d'un flocon, manche en buis tourné et deux bâtons de cire rouge." }
+  ],
+  "knowledge": {
+    "description": "Je grave mes plaques de cuivre au burin, à l'envers bien sûr, ce qui m'a valu quelques cartes de « Joyeux Noël » en écriture de miroir au début. C'est de la taille-douce : j'encre la plaque, je l'essuie à la tarlatane puis du plat de la main, l'encre ne reste que dans les sillons, et la presse écrase le papier humide avec plusieurs tonnes de pression. C'est pour ça que le dessin a du relief sous les doigts. Une partie de mon papier, je la fabrique moi-même, feuille à feuille, dans la cuve du moulin, avec des chiffons de lin et de coton. Mes carnets sont cousus au fil de lin ciré, et je calligraphie à la plume métallique, en anglaise ou en onciale, avec une encre de brou de noix.\n\nLe Vieux Moulin était un moulin à papier au XVIIIe siècle ; sa roue tourne encore sur le torrent. Ma grand-tante Hortense y a été la dernière papetière. Quand je l'ai retrouvé, en 2015, il était plein de toiles d'araignée, et sous une vieille bâche dormait une presse à bras de 1890. J'ai mis deux ans à la remettre en état, avec l'aide de Gaspard, l'ébéniste, pour les pièces en bois. J'avais appris la gravure aux Beaux-Arts, mais c'est elle, la presse, qui m'a appris la patience.\n\nJe suis très timide… Alors j'ai commencé la calligraphie pour écrire ce que je n'osais pas dire à voix haute. Chaque année, le tout premier tirage des cartes de vœux part chez les habitants de Givrelune qui vivent seuls. Les chutes de papier deviennent des étiquettes cadeaux, offertes avec chaque achat. Et le papier abîmé repart dans la cuve, pour renaître en feuille neuve. Rien ne se perd, au moulin.",
+    "faq": [
+      { "q": "Pouvez-vous personnaliser des cartes ou des faire-part ?", "a": "Oui… avec plaisir. Je grave une plaque rien que pour toi : faire-part, vœux d'entreprise, ex-libris. À partir de 180 €, et la plaque de cuivre t'appartient ensuite. Il faut compter trois à cinq semaines. Je calligraphie aussi les noms sur les enveloppes, 2 € l'enveloppe." },
+      { "q": "Quel papier utilisez-vous ?", "a": "Du papier de chiffon fait au moulin, avec du lin et du coton récupérés, et un papier pur coton de 300 g pour les cartes. Les encres sont à base d'huile de lin, et l'encre de calligraphie, c'est du brou de noix." },
+      { "q": "Comment utiliser un cachet de cire ?", "a": "On chauffe le bâton de cire à la flamme d'une bougie, on fait couler une petite flaque de la taille d'une pièce, on attend cinq secondes… puis on pose le sceau bien droit, dix secondes, sans bouger. On le soulève doucement. La première fois, c'est raté, et c'est très bien comme ça." },
+      { "q": "Envoyez-vous vos créations ?", "a": "Oui, en lettre suivie, dans une enveloppe rigide pour que rien ne se plie : 3,90 € en France. J'envoie aussi à l'étranger… J'aime bien imaginer mes cartes voyager." }
+    ],
+    "facts": [
+      { "topic": "matières", "text": "Papier de chiffon fait au moulin (lin et coton récupérés), papier pur coton 300 g, encres à l'huile de lin, encre de brou de noix, fil de lin ciré, plaques de cuivre gravées au burin." },
+      { "topic": "prix", "text": "Le cachet de cire est à 18,50 €, le carnet à 22 €, le lot de cinq cartes gravées à 28 € et le kit de calligraphie à 45 €." },
+      { "topic": "ateliers", "text": "Cours de calligraphie le jeudi soir au moulin, de 18 h 30 à 20 h 30 : six personnes au plus, 35 € la séance, matériel fourni. Le chalet est ouvert de 15 h à 21 h." }
+    ]
+  }
+}

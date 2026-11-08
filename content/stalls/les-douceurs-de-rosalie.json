@@ -1,0 +1,69 @@
+{
+  "id": "les-douceurs-de-rosalie",
+  "order": 8,
+  "name": "Les Douceurs de Rosalie",
+  "tagline": "Bredele, mannele et chocolat chaud, comme dans la cuisine de ma grand-mère alsacienne",
+  "category": "gourmand",
+  "website": "https://example.com/les-douceurs-de-rosalie",
+  "links": [
+    { "label": "Facebook", "url": "https://example.com/les-douceurs-de-rosalie/facebook", "kind": "facebook" },
+    { "label": "Commander par e-mail", "url": "mailto:rosalie.douceurs@example.com", "kind": "mail" }
+  ],
+  "owner": {
+    "name": "Rosalie Kieffer",
+    "role": "Pâtissière",
+    "bio": "Rosalie a grandi entre les fourneaux et les moules à kougelhopf de sa grand-mère, à Obernai. Chaque décembre, elle cuit plus de quarante kilos de bredele… et en goûte au moins la moitié, dit-elle.",
+    "mood": "chaleureux",
+    "voicePitch": 1.08,
+    "appearance": { "skin": "#eac0a0", "hair": "#e2c08a", "hairStyle": "braids", "outfit": "apron", "outfitColor": "#d06a5a", "outfitColor2": "#f3ead8", "scarf": null, "hat": "hood", "hatColor": "#b8413a", "accessory": "mittens", "height": 0.95, "build": 1.15 },
+    "greetings": [
+      "Bonsoir mon chou ! Tiens, goûte un bredele à l'anis, c'est la maison qui régale.",
+      "Entre, entre, viens te réchauffer ! Le chocolat chaud est prêt, il n'attendait que toi.",
+      "Oh, quelle joie de te voir ! Ça sent la cannelle jusqu'au bout de l'allée, hein ?"
+    ],
+    "farewells": [
+      "Rentre bien au chaud, et garde-moi une petite place dans ton cœur… et dans ton estomac !",
+      "À la revoyure ! Et pas plus de trois bredele avant le dîner, hein."
+    ]
+  },
+  "chalet": {
+    "wood": "#a5734a",
+    "roof": "#7a3b2e",
+    "accent": "#d06a5a",
+    "garland": "warm",
+    "awning": "stripes",
+    "awningColors": ["#e79a8f", "#fff4dc"],
+    "signColor": "#fff4dc",
+    "signTextColor": "#8b2c2a",
+    "snow": true
+  },
+  "decorations": [
+    { "type": "bell", "slot": "sign" },
+    { "type": "chalkboard", "slot": "front-right", "text": "Chocolat chaud maison" },
+    { "type": "crate-apples", "slot": "side-left" },
+    { "type": "mini-tree", "slot": "ground-left" },
+    { "type": "snowman", "slot": "ground-right" }
+  ],
+  "products": [
+    { "id": "boite-bredele", "name": "Boîte de bredele assortis", "price": 16, "image": "/demo/products/bredele.svg", "url": "https://example.com/les-douceurs-de-rosalie/boite-de-bredele", "description": "300 g de petits gâteaux de Noël : étoiles à la cannelle, cœurs à la confiture, croissants à la vanille, spritz et butterbredele.", "featured": true },
+    { "id": "chocolat-chaud-pot", "name": "Chocolat chaud en pot", "price": "13,50 €", "image": "/demo/products/hot-chocolate-jar.svg", "url": "https://example.com/les-douceurs-de-rosalie/chocolat-chaud-en-pot", "description": "Cacao, éclats de chocolat noir 70 %, sucre vanillé et mini-guimauves en couches. Verse un litre de lait chaud, c'est prêt pour six tasses." },
+    { "id": "mannele", "name": "Mannele", "price": 3.5, "image": "/demo/products/mannele.svg", "url": "https://example.com/les-douceurs-de-rosalie/mannele", "description": "Petit bonhomme brioché aux yeux de raisins et au sucre perlé, comme le veut la tradition de la Saint-Nicolas." },
+    { "id": "biscuits-a-suspendre", "name": "Biscuits à suspendre", "price": 9, "image": "/demo/products/cookie-ornaments.svg", "url": "https://example.com/les-douceurs-de-rosalie/biscuits-a-suspendre", "description": "Quatre sablés au pain d'épices en étoile et en sapin, glacés au sucre, avec leur ruban rouge pour le sapin." }
+  ],
+  "knowledge": {
+    "description": "Tout est fait à la main dans mon fournil, avec la farine d'épeautre du moulin d'en bas, le beurre de la laiterie de Givrelune et les œufs des poules de ma voisine Simone. Chaque bredele a sa pâte et son caractère : les butterbredele, des sablés au beurre découpés à l'emporte-pièce ; les étoiles à la cannelle, à la meringue et aux amandes ; les anisbredele, qu'on laisse sécher toute une nuit pour qu'ils gagnent leur petit pied ; les spritz poussés à la douille et trempés dans le chocolat. Mes mannele lèvent doucement toute une nuit au frais avant d'être dorés au jaune d'œuf. Et mon chocolat chaud en pot, je le monte en couches comme un millefeuille : cacao non sucré, chocolat noir 70 %, sucre à la vanille et guimauves maison.\n\nMa grand-mère Marthe, à Obernai, commençait ses bredele à la Sainte-Catherine, le 25 novembre, et elle en cuisait douze sortes. Elle les cachait dans des boîtes en fer tout en haut de l'armoire… et nous, les petits-enfants, on savait très bien où. Je suis arrivée à Givrelune en 2012 pour une saison, comme commis au Coin Gourmand chez Paulette, et je ne suis jamais repartie. Mes emporte-pièces sont ceux de Marthe ; certains ont plus de cent ans, et ils sentent encore la cannelle.\n\nUn bredele, ça se partage : en Alsace, on en offre aux voisins, au facteur, à tout le monde. Alors le 6 décembre, pour la Saint-Nicolas, j'offre un mannele à chaque enfant qui me chante une comptine. Mes boîtes en fer sont faites pour durer : rapporte la tienne l'hiver suivant et je la remplis avec 10 % de bredele en plus. Les biscuits cassés ne sont jamais perdus, ils finissent en éclats sur les chocolats chauds du chalet. Et quand il neige très fort, la tasse de chocolat est offerte à ceux qui ont le nez tout rouge.",
+    "faq": [
+      { "q": "Quels sont les allergènes de vos biscuits ?", "a": "Mes douceurs contiennent du gluten (épeautre), des œufs, du lait et du beurre, et souvent des fruits à coque, surtout des amandes et des noisettes. Tout est préparé dans la même cuisine, donc il peut y avoir des traces de tout. Les étoiles à la cannelle sont naturellement sans gluten, mon chou." },
+      { "q": "Combien de temps se conservent les bredele ?", "a": "Quatre à six semaines dans une boîte en fer, au frais et au sec. Range chaque sorte à part, sinon les anisbredele ramollissent les autres. Le mannele, lui, se mange dans les deux jours, ou alors tu le congèles et tu le réchauffes cinq minutes au four." },
+      { "q": "Comment préparer le chocolat chaud en pot ?", "a": "Verse tout le pot dans un litre de lait bien chaud, pas bouillant, et fouette pendant deux minutes : ça fait six belles tasses. Pour une seule tasse, quatre cuillères bombées suffisent. Les guimauves, garde-les pour le dessus, c'est meilleur quand elles fondent." },
+      { "q": "Livrez-vous ?", "a": "Oui pour les bredele, le chocolat en pot et les biscuits à suspendre : Colissimo en 48 heures, 6,90 €, offert dès 50 €. Les mannele, par contre, ne voyagent pas : ils sont trop frais et trop fragiles, il faut venir les chercher au chalet !" },
+      { "q": "Prenez-vous les commandes sur mesure ?", "a": "Avec plaisir ! Boîtes cadeaux pour les entreprises, assortiments pour les mariages, mannele à la douzaine pour la Saint-Nicolas des écoles… Il suffit de m'écrire avant le 15 décembre, et je te prépare ça avec tout mon cœur." }
+    ],
+    "facts": [
+      { "topic": "allergènes", "text": "Gluten (épeautre), œufs, lait, beurre et fruits à coque (amandes, noisettes). Traces possibles de tout. Les étoiles à la cannelle sont sans gluten." },
+      { "topic": "ingrédients", "text": "Farine d'épeautre du moulin d'en bas, beurre de la laiterie de Givrelune, œufs de poules élevées en plein air, cacao non sucré, chocolat noir 70 %, épices entières moulues au fournil." },
+      { "topic": "prix", "text": "Le mannele est à 3,50 €, les biscuits à suspendre à 9 €, le chocolat chaud en pot à 13,50 € et la boîte de bredele à 16 €." },
+      { "topic": "horaires", "text": "Le chalet ouvre de 11 h à 21 h. Les mannele tout chauds sortent du four à 16 h, et il n'y en a pas pour tout le monde !" }
+    ]
+  }
+}

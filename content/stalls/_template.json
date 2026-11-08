@@ -1,0 +1,31 @@
+{
+  "$schema": "../../docs/schema/stall.schema.json",
+  "id": "ma-cabane",
+  "order": 99,
+  "name": "Ma Cabane",
+  "tagline": "Une phrase qui donne envie d'approcher",
+  "category": "artisanat",
+  "website": "https://mon-site.fr",
+  "links": [{ "label": "Instagram", "url": "https://instagram.com/moncompte", "kind": "instagram" }],
+  "owner": {
+    "name": "Prénom Nom",
+    "role": "Mon métier",
+    "bio": "Deux phrases sur toi, affichées sur ta fiche.",
+    "mood": "chaleureux",
+    "appearance": { "hairStyle": "bun", "hat": "bobble", "outfit": "sweater", "outfitColor": "#2f5d50", "scarf": "#e8c547" },
+    "greetings": ["Bonsoir ! Bienvenue dans ma cabane."],
+    "farewells": ["Belle soirée au marché !"]
+  },
+  "chalet": { "wood": "#9b6a45", "roof": "#5a3a2a", "accent": "#b8413a", "garland": "warm", "awning": "stripes", "awningColors": ["#b8413a", "#f3ead8"] },
+  "decorations": [{ "type": "wreath", "slot": "sign" }, { "type": "lantern" }, { "type": "mini-tree" }],
+  "products": [
+    { "url": "https://mon-site.fr/produits/mon-produit" },
+    { "name": "Produit écrit à la main", "price": 15, "image": "/demo/products/honey.svg", "url": "https://mon-site.fr/produits/autre" }
+  ],
+  "knowledge": {
+    "description": "Écris ici, à la première personne, tout ce que tu raconterais à quelqu'un devant ta cabane : ton métier, ta façon de travailler, ton histoire.\n\nSépare les paragraphes par une ligne vide. Plus il y a de texte, plus tes réponses seront précises.",
+    "faq": [{ "q": "Livrez-vous ?", "a": "Oui, partout en France sous 5 jours." }],
+    "facts": [{ "topic": "horaires", "text": "Ouvert tous les soirs du marché de 16 h à 22 h." }],
+    "scan": { "enabled": true, "maxPages": 15, "autoProducts": 6 }
+  }
+}

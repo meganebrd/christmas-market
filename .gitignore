@@ -1,0 +1,27 @@
+# Dépendances
+node_modules/
+
+# Build
+dist/
+*.tsbuildinfo
+
+# Tests & captures générées
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+coverage/
+/shots/
+
+# Environnement
+.env
+.env.*
+!.env.example
+
+# Éditeurs / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.log
+npm-debug.log*

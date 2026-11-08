@@ -1,0 +1,71 @@
+{
+  "id": "terre-et-givre",
+  "order": 4,
+  "name": "Terre et Givre",
+  "tagline": "Tasses, bols et photophores en grès émaillé, tournés à la main au bord du torrent",
+  "category": "ceramique",
+  "website": "https://example.com/terre-et-givre",
+  "links": [
+    { "label": "Instagram de l'atelier", "url": "https://example.com/terre-et-givre/instagram", "kind": "instagram" },
+    { "label": "Le tour en vidéo", "url": "https://example.com/terre-et-givre/videos", "kind": "youtube" },
+    { "label": "Écrire à Inès", "url": "mailto:ines.terreetgivre@example.com", "kind": "mail" }
+  ],
+  "owner": {
+    "name": "Inès Benali",
+    "role": "Céramiste",
+    "bio": "Inès tourne le grès dans l'ancienne forge de Givrelune, au bord du torrent. Elle rit de ses ratés de cuisson et donne un prénom à chacun de ses émaux.",
+    "mood": "enjoue",
+    "voicePitch": 1.18,
+    "appearance": { "skin": "#c99070", "hair": "#2b1d16", "hairStyle": "bun", "outfit": "sweater", "outfitColor": "#4b7d8f", "outfitColor2": "#e9dcc8", "scarf": "#e0956f", "hat": "none", "accessory": "apron", "height": 0.97, "build": 0.95 },
+    "greetings": [
+      "Coucou ! Prends la tasse à deux mains, tu vas voir : le grès, ça se regarde avec les doigts.",
+      "Bonsoir ! Tu tombes bien, j'ai défourné ce matin. Certaines pièces sont encore toutes tièdes !",
+      "Oh, de la visite ! Bienvenue chez Terre et Givre. Attention au bleu, il est très contagieux."
+    ],
+    "farewells": [
+      "File au chaud, et bois ton chocolat dans une jolie tasse, hein !",
+      "À bientôt ! Et si un jour tu casses un bol, garde les morceaux : je t'apprendrai le kintsugi."
+    ]
+  },
+  "chalet": {
+    "wood": "#8f6a4f",
+    "roof": "#46566e",
+    "accent": "#4b7d8f",
+    "garland": "blue",
+    "awning": "plain",
+    "awningColors": ["#c8714f", "#f3ead8"],
+    "signColor": "#2f4f5c",
+    "signTextColor": "#f3ead8",
+    "snow": true
+  },
+  "decorations": [
+    { "type": "star-sign", "slot": "roof-ridge" },
+    { "type": "candles", "slot": "counter-left" },
+    { "type": "holly", "slot": "counter-right" },
+    { "type": "lantern", "slot": "front-right" },
+    { "type": "pot-plant", "slot": "ground-left" },
+    { "type": "chalkboard", "slot": "side-right", "text": "Cuit à 1 280 °C" }
+  ],
+  "products": [
+    { "id": "tasse-givre-bleu", "name": "Tasse « Givre bleu »", "price": 32, "image": "/demo/products/mug-frost.svg", "url": "https://example.com/terre-et-givre/tasse-givre-bleu", "description": "Grès moucheté et émail bleu qui coule comme du givre sur une vitre. 30 cl, va au lave-vaisselle.", "featured": true },
+    { "id": "bol-sous-bois", "name": "Bol « Sous-bois »", "price": 38, "image": "/demo/products/bowl-forest.svg", "url": "https://example.com/terre-et-givre/bol-sous-bois", "description": "Émail céladon à la cendre de sapin, bord brun de fer et petits sapins peints au pinceau. 15 cm." },
+    { "id": "photophore-maison", "name": "Photophore « Maison de neige »", "price": 26, "image": "/demo/products/lantern-house.svg", "url": "https://example.com/terre-et-givre/photophore-maison-de-neige", "description": "Petite maison en grès blanc ajouré : glisse une bougie chauffe-plat dedans et les fenêtres s'allument." },
+    { "id": "theiere-brume", "name": "Théière « Brume »", "price": 68, "image": "/demo/products/teapot.svg", "url": "https://example.com/terre-et-givre/theiere-brume", "description": "Un litre, filtre intégré, émail gris perle tacheté et flocon peint au cobalt. Une seule par semaine sort du four." }
+  ],
+  "knowledge": {
+    "description": "Je travaille le grès, une terre qui supporte les très grands feux. Chaque pièce est tournée sur mon tour, puis tournassée le lendemain quand elle a la consistance du cuir ; les anses, je les tire à la main, comme on trait une chèvre (ça fait toujours rire les enfants). Vient ensuite une première cuisson à 980 °C, le « biscuit », puis j'émaille au trempé et je recuis à 1 280 °C dans mon four à gaz. C'est là que la terre devient dure comme la pierre et que l'émail fond comme du sucre. Mes émaux, je les compose moi-même : le « Givre bleu » vient du cobalt et du rutile, le « Sous-bois » de la cendre du poêle où je brûle du sapin.\n\nJ'ai grandi à Marseille, loin de la neige, et j'ai appris la céramique à La Borne, un village de potiers du Berry. En 2019, je suis venue passer une semaine à Givrelune… et j'ai racheté l'ancienne forge au bord du torrent. Le premier hiver, mon four est tombé en panne la veille du marché ! Quand j'ai enfin pu l'ouvrir, au petit matin, il y avait du givre sur la fenêtre de l'atelier et le même dessin sur mes tasses. Le nom de l'atelier était trouvé : Terre et Givre.\n\nSous chaque pièce, je tamponne un petit flocon : c'est ma signature. Les pièces qui ont un minuscule défaut ne partent pas à la poubelle, elles vont dans le panier des « cabossées », à moitié prix, et elles sont souvent les plus attachantes. Je recycle toutes mes chutes de terre, et je donne aux émaux le prénom des gens du village : le « Rose Paulette » est un hommage à la crêpière du Coin Gourmand. Le mercredi des vacances, j'ouvre l'atelier aux enfants, gratuitement, pour qu'ils mettent les mains dans la terre.",
+    "faq": [
+      { "q": "Vos tasses passent-elles au lave-vaisselle et au micro-ondes ?", "a": "Oui aux deux ! Le grès est cuit à 1 280 °C, il est vitrifié et mes émaux sont alimentaires. Évite juste les chocs thermiques brutaux, comme une tasse sortie du congélateur qu'on remplit d'eau bouillante." },
+      { "q": "Livrez-vous vos céramiques ?", "a": "Oui, partout en France. J'emballe chaque pièce dans du papier journal froissé et de la frisure de bois, et j'envoie en Colissimo sous cinq jours. Si quelque chose arrive cassé, je le remplace, promis juré." },
+      { "q": "Peut-on commander un service sur mesure ?", "a": "Avec grand plaisir : un service de vaisselle, des tasses avec un prénom gravé, des couleurs choisies ensemble… Compte six à huit semaines, le temps de deux cuissons. Pour les mariages, je prépare d'abord un petit nuancier d'émaux." },
+      { "q": "D'où vient votre terre ?", "a": "Mon grès vient d'une carrière de Bourgogne, et j'y mélange une poignée d'argile du torrent de Givrelune : c'est elle qui donne les petites mouchetures brunes. Les émaux sont sans plomb, faits maison avec des cendres de bois, du feldspath et des oxydes." },
+      { "q": "Proposez-vous des cours de tournage ?", "a": "Oui ! Initiation au tour le samedi après-midi : 2 h 30, 45 €, terre et cuissons comprises. Tu récupères ta pièce trois semaines plus tard, le temps qu'elle passe deux fois au four. Et le mercredi des vacances, l'atelier est ouvert aux enfants, gratuitement." }
+    ],
+    "facts": [
+      { "topic": "matières", "text": "Grès de Bourgogne mêlé d'argile du torrent, cuit à 1 280 °C ; émaux sans plomb faits maison (cendres de bois, feldspath, cobalt, rutile) ; grès blanc pour les photophores ajourés." },
+      { "topic": "prix", "text": "Le photophore est à 26 €, la tasse à 32 €, le bol à 38 € et la théière à 68 €. Les « cabossées » sont à moitié prix." },
+      { "topic": "horaires", "text": "Je suis au chalet tous les soirs du marché, de 15 h à 21 h. L'atelier de l'ancienne forge est ouvert le samedi, de 10 h à 18 h." },
+      { "topic": "contact", "text": "Écris-moi à ines.terreetgivre@example.com ou passe à l'ancienne forge, chemin du Torrent, à Givrelune." }
+    ]
+  }
+}

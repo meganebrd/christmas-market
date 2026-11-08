@@ -1,0 +1,5 @@
+[
+  {"id":12,"name":"Confiture de fraise","permalink":"/produit/confiture-fraise/","short_description":"<p>Fraises gariguettes du verger, 60 % de fruits.</p>","description":"<p>Fraises gariguettes du verger, cuites au chaudron.</p>","prices":{"price":"650","regular_price":"650","currency_code":"EUR","currency_minor_unit":2},"images":[{"src":"/wp-content/uploads/2026/06/fraise.jpg"}],"is_in_stock":true,"is_purchasable":true},
+  {"id":13,"name":"Gel&eacute;e de coing","permalink":"/produit/gelee-de-coing/","short_description":"","description":"<p>Coings de nos vieux arbres, gelée claire et parfumée.</p>","prices":{"price":"720","currency_code":"EUR","currency_minor_unit":2},"images":[],"is_in_stock":false},
+  {"id":14,"name":"Coffret trois pots","permalink":"/produit/coffret-trois-pots/","short_description":"<p>Fraise, abricot et coing.</p>","prices":{"price":"1890","currency_code":"EUR","currency_minor_unit":2},"images":[{"src":"https://ferme.example.net/img/coffret.webp"}],"is_in_stock":true}
+]

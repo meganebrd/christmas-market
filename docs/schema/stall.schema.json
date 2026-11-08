@@ -1,0 +1,474 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://givrelune.dev/schema/stall.schema.json",
+  "title": "Cabane du marché de Givrelune",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "owner"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Identifiant unique = nom du fichier"
+    },
+    "order": {
+      "type": "number",
+      "description": "Position dans l'allée (plus petit = plus près de l'entrée)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Nom de la boutique, peint sur l'enseigne"
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "category": {
+      "enum": [
+        "artisanat",
+        "gourmand",
+        "deco",
+        "textile",
+        "bijoux",
+        "jouets",
+        "beaute",
+        "papeterie",
+        "ceramique",
+        "autre"
+      ]
+    },
+    "website": {
+      "type": "string",
+      "description": "Site principal (bouton « Visiter le site »)"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "label",
+          "url"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "site",
+              "instagram",
+              "facebook",
+              "etsy",
+              "tiktok",
+              "youtube",
+              "mail",
+              "phone",
+              "other"
+            ]
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string",
+          "description": "ex. Céramiste"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "appearance": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Apparence du personnage (tout est optionnel : des valeurs harmonieuses sont tirées au hasard de façon déterministe).",
+          "properties": {
+            "skin": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "description": "Couleur hexadécimale, ex. #b8413a"
+            },
+            "hair": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "description": "Couleur hexadécimale, ex. #b8413a"
+            },
+            "hairStyle": {
+              "enum": [
+                "short",
+                "long",
+                "bun",
+                "braids",
+                "curly",
+                "ponytail",
+                "bald",
+                "bob"
+              ]
+            },
+            "outfit": {
+              "enum": [
+                "coat",
+                "sweater",
+                "apron",
+                "cape",
+                "vest"
+              ]
+            },
+            "outfitColor": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "description": "Couleur hexadécimale, ex. #b8413a"
+            },
+            "outfitColor2": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "description": "Couleur hexadécimale, ex. #b8413a"
+            },
+            "scarf": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$",
+                  "description": "Couleur hexadécimale, ex. #b8413a"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "null = pas d'écharpe"
+            },
+            "hat": {
+              "enum": [
+                "none",
+                "beanie",
+                "bobble",
+                "beret",
+                "tophat",
+                "chef",
+                "earmuffs",
+                "hood",
+                "cap"
+              ]
+            },
+            "hatColor": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "description": "Couleur hexadécimale, ex. #b8413a"
+            },
+            "accessory": {
+              "enum": [
+                "none",
+                "glasses",
+                "round-glasses",
+                "apron",
+                "mittens",
+                "bag",
+                "pipe",
+                "flower"
+              ]
+            },
+            "beard": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$",
+                  "description": "Couleur hexadécimale, ex. #b8413a"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "height": {
+              "type": "number",
+              "minimum": 0.8,
+              "maximum": 1.2
+            },
+            "build": {
+              "type": "number",
+              "minimum": 0.8,
+              "maximum": 1.25
+            }
+          }
+        },
+        "voicePitch": {
+          "type": "number",
+          "minimum": 0.6,
+          "maximum": 1.6
+        },
+        "greetings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "farewells": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mood": {
+          "enum": [
+            "chaleureux",
+            "timide",
+            "enjoue",
+            "sage",
+            "farceur"
+          ]
+        }
+      }
+    },
+    "chalet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "wood": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Couleur hexadécimale, ex. #b8413a"
+        },
+        "roof": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Couleur hexadécimale, ex. #b8413a"
+        },
+        "accent": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Couleur hexadécimale, ex. #b8413a"
+        },
+        "sign": {
+          "type": "string"
+        },
+        "signColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Couleur hexadécimale, ex. #b8413a"
+        },
+        "signTextColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Couleur hexadécimale, ex. #b8413a"
+        },
+        "garland": {
+          "enum": [
+            "warm",
+            "multicolor",
+            "blue",
+            "none"
+          ]
+        },
+        "awning": {
+          "enum": [
+            "stripes",
+            "plain",
+            "none"
+          ]
+        },
+        "awningColors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$",
+            "description": "Couleur hexadécimale, ex. #b8413a"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "snow": {
+          "type": "boolean"
+        }
+      }
+    },
+    "decorations": {
+      "type": "array",
+      "description": "Ordonnées : l'ordre compte.",
+      "items": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "enum": [
+              "wreath",
+              "garland",
+              "lantern",
+              "mini-tree",
+              "candles",
+              "gift-pile",
+              "snowman",
+              "star-sign",
+              "pinecones",
+              "ribbon",
+              "teddy",
+              "nutcracker",
+              "holly",
+              "mistletoe",
+              "reindeer",
+              "bell",
+              "sled",
+              "crate-apples",
+              "pot-plant",
+              "chalkboard",
+              "bunting"
+            ]
+          },
+          "slot": {
+            "enum": [
+              "roof-ridge",
+              "roof-left",
+              "roof-right",
+              "sign",
+              "front-left",
+              "front-right",
+              "counter-left",
+              "counter-right",
+              "side-left",
+              "side-right",
+              "ground-left",
+              "ground-right",
+              "back-wall"
+            ]
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$",
+            "description": "Couleur hexadécimale, ex. #b8413a"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "products": {
+      "type": "array",
+      "description": "Ordonnés : l'ordre est celui de l'étal (8 visibles en 3D).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "description": "Page produit. Si nom/image/prix manquent, `npm run scan` les complète."
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": [
+              "number",
+              "string"
+            ]
+          },
+          "currency": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "featured": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "knowledge": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Long texte à la première personne. Paragraphes séparés par une ligne vide."
+        },
+        "faq": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "q",
+              "a"
+            ],
+            "properties": {
+              "q": {
+                "type": "string"
+              },
+              "a": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "topic",
+              "text"
+            ],
+            "properties": {
+              "topic": {
+                "type": "string",
+                "description": "livraison, prix, horaires, matières, contact, allergènes…"
+              },
+              "text": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "scan": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "urls": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "maxPages": {
+              "type": "number"
+            },
+            "autoProducts": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  }
+}

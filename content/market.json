@@ -1,0 +1,117 @@
+{
+  "$schema": "../docs/schema/market.schema.json",
+  "meta": {
+    "title": "Le Marché de Givrelune",
+    "town": "Givrelune",
+    "tagline": "Le marché de Noël des artisans, là où la lune givre les toits",
+    "description": "Un village niché au creux des montagnes, où chaque hiver les artisans ouvrent leurs cabanes à la lueur des lampions.",
+    "locale": "fr",
+    "organizer": { "name": "Givrelune (projet open source)", "url": "https://github.com/" }
+  },
+  "theme": {
+    "timeOfDay": "dusk",
+    "accent": "#c0453a",
+    "lightColor": "#ffc56b",
+    "aurora": true,
+    "snow": 1
+  },
+  "story": {
+    "enabled": true,
+    "stars": 7,
+    "intro": [
+      "Au creux de la vallée, là où la neige ne fond jamais tout à fait…",
+      "…se cache Givrelune, le village que la lune vient givrer chaque hiver.",
+      "Ce soir, comme chaque année, les artisans ouvrent leurs cabanes.",
+      "Mais le vent du Nord a soufflé très fort la nuit dernière…",
+      "…et les sept étoiles de verre du Grand Sapin se sont envolées aux quatre coins du marché."
+    ],
+    "finale": [
+      "La dernière étoile retrouve sa branche…",
+      "…et le Grand Sapin s'embrase de lumière, comme au tout premier hiver de Givrelune.",
+      "Merci, voyageur. Les cabanes restent ouvertes toute la nuit : flâne autant qu'il te plaira."
+    ]
+  },
+  "music": {
+    "enabled": true,
+    "volume": 0.55,
+    "shuffle": false,
+    "tracks": [
+      { "type": "procedural", "song": "valse-de-givrelune", "title": "La Valse de Givrelune" },
+      { "type": "procedural", "song": "douce-nuit", "title": "Douce nuit (trad.)" },
+      { "type": "procedural", "song": "mon-beau-sapin", "title": "Mon beau sapin (trad.)" },
+      { "type": "procedural", "song": "il-est-ne", "title": "Il est né le divin enfant (trad.)" },
+      { "type": "procedural", "song": "les-anges", "title": "Les anges dans nos campagnes (trad.)" },
+      { "type": "procedural", "song": "greensleeves", "title": "Greensleeves (trad.)" }
+    ]
+  },
+  "cast": [
+    {
+      "id": "celeste",
+      "name": "Céleste",
+      "role": "guide",
+      "appearance": { "skin": "#f1cdb3", "hair": "#c7c2bd", "hairStyle": "bun", "outfit": "cape", "outfitColor": "#2f4f7a", "outfitColor2": "#3a2c3f", "scarf": "#e8c547", "hat": "none", "accessory": "round-glasses", "height": 1.02 },
+      "voicePitch": 1.15,
+      "lines": ["Chaque réverbère de Givrelune, c'est moi qui l'allume. Ça fait quarante hivers, et je ne m'en lasse pas."]
+    },
+    {
+      "id": "barnabe",
+      "name": "Barnabé",
+      "role": "barista",
+      "appearance": { "skin": "#d9a07a", "hair": "#6b4a32", "hairStyle": "short", "outfit": "apron", "outfitColor": "#7a3b2e", "outfitColor2": "#f3ead8", "scarf": null, "hat": "beanie", "hatColor": "#2f5d50", "beard": "#6b4a32", "build": 1.2, "height": 1.08 },
+      "voicePitch": 0.7,
+      "lines": ["Un vin chaud ? Un chocolat ? Ici, personne ne repart avec les mains froides."]
+    },
+    {
+      "id": "paulette",
+      "name": "Paulette",
+      "role": "cook",
+      "appearance": { "skin": "#eac0a0", "hair": "#b0472f", "hairStyle": "curly", "outfit": "apron", "outfitColor": "#d06a5a", "outfitColor2": "#f3ead8", "scarf": null, "hat": "chef", "hatColor": "#ffffff" },
+      "voicePitch": 1.25,
+      "lines": ["Mes crêpes, c'est de la farine du moulin d'en bas et beaucoup d'amour."]
+    },
+    {
+      "id": "firmin",
+      "name": "Firmin",
+      "role": "chestnut-seller",
+      "appearance": { "skin": "#b97a56", "hair": "#d9d4cc", "hairStyle": "short", "outfit": "coat", "outfitColor": "#6b4f3a", "scarf": "#d94f45", "hat": "cap", "hatColor": "#3b3340", "beard": "#d9d4cc" },
+      "voicePitch": 0.8,
+      "lines": ["Chauds, chauds les marrons ! Ça réchauffe les doigts et le cœur."]
+    },
+    {
+      "id": "aubin",
+      "name": "Maître Aubin",
+      "role": "glassblower",
+      "appearance": { "skin": "#8d5a3d", "hair": "#2b1d16", "hairStyle": "short", "outfit": "apron", "outfitColor": "#4b3a2e", "outfitColor2": "#c98a2e", "scarf": null, "hat": "none", "accessory": "glasses", "beard": "#2b1d16", "height": 1.05 },
+      "voicePitch": 0.85,
+      "lines": ["Le verre, c'est du sable qui a rêvé d'être lumière."]
+    },
+    {
+      "id": "odile",
+      "name": "Odile",
+      "role": "carousel-keeper",
+      "appearance": { "skin": "#f6d7c3", "hair": "#e2c08a", "hairStyle": "braids", "outfit": "coat", "outfitColor": "#8a5a9c", "scarf": "#f2efe6", "hat": "beret", "hatColor": "#b8413a" },
+      "voicePitch": 1.2
+    },
+    {
+      "id": "leon",
+      "name": "Léon",
+      "role": "fair-keeper",
+      "appearance": { "skin": "#5e3b29", "hair": "#2b1d16", "hairStyle": "curly", "outfit": "vest", "outfitColor": "#b8413a", "outfitColor2": "#2b2b3a", "scarf": "#e8c547", "hat": "tophat", "hatColor": "#2b2b3a" },
+      "voicePitch": 1.0
+    },
+    {
+      "id": "noe",
+      "name": "Noé",
+      "role": "stargazer",
+      "appearance": { "skin": "#eac0a0", "hair": "#5a3825", "hairStyle": "short", "outfit": "coat", "outfitColor": "#3c5a8a", "scarf": "#e8c547", "hat": "bobble", "hatColor": "#d94f45", "height": 0.86 },
+      "voicePitch": 1.45
+    },
+    {
+      "id": "anatole",
+      "name": "Anatole",
+      "role": "musician",
+      "appearance": { "skin": "#d9a07a", "hair": "#3a3a44", "hairStyle": "short", "outfit": "coat", "outfitColor": "#2f5d50", "scarf": "#b8413a", "hat": "beret", "hatColor": "#3b3340", "beard": "#3a3a44" },
+      "voicePitch": 0.9
+    }
+  ]
+}

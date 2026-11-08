@@ -1,0 +1,70 @@
+{
+  "id": "savons-de-la-source",
+  "order": 6,
+  "name": "Savons de la Source",
+  "tagline": "Savons saponifiés à froid et baumes doux, à l'eau de la source du Givre",
+  "category": "beaute",
+  "website": "https://example.com/savons-de-la-source",
+  "links": [
+    { "label": "Instagram", "url": "https://example.com/savons-de-la-source/instagram", "kind": "instagram" },
+    { "label": "La lettre des saisons", "url": "https://example.com/savons-de-la-source/lettre", "kind": "other" },
+    { "label": "Écrire à Lou", "url": "mailto:lou.savons@example.com", "kind": "mail" }
+  ],
+  "owner": {
+    "name": "Lou Martin",
+    "role": "Savonnier·ère",
+    "bio": "Lou fabrique ses savons à deux pas de la source du Givre, avec les plantes des hauteurs. Pour Lou, un bon savon, c'est surtout de la patience : six semaines de cure, pas un jour de moins.",
+    "mood": "sage",
+    "voicePitch": 1.0,
+    "appearance": { "skin": "#8d5a3d", "hair": "#2b1d16", "hairStyle": "curly", "outfit": "sweater", "outfitColor": "#7f9c86", "outfitColor2": "#3b3340", "scarf": "#c9b3d9", "hat": "beanie", "hatColor": "#6c4a7d", "accessory": "flower", "height": 1.0, "build": 1.0 },
+    "greetings": [
+      "Bonsoir. Prends le temps de respirer… lavande, sapin, miel. Chaque savon raconte un paysage.",
+      "Bienvenue. Ici, rien ne presse : mes savons ont attendu six semaines, ils peuvent bien t'attendre un peu.",
+      "Des mains rougies par le froid ? Approche, j'ai un baume pour ça."
+    ],
+    "farewells": [
+      "Prends soin de ta peau, elle t'accompagne toute la vie.",
+      "Belle soirée. Et rince-toi à l'eau tiède, jamais brûlante."
+    ]
+  },
+  "chalet": {
+    "wood": "#9c7a5e",
+    "roof": "#5b4a6b",
+    "accent": "#7f9c86",
+    "garland": "warm",
+    "awning": "stripes",
+    "awningColors": ["#b9a3cf", "#f3ead8"],
+    "signColor": "#e9eef9",
+    "signTextColor": "#4a3a5c",
+    "snow": true
+  },
+  "decorations": [
+    { "type": "garland", "slot": "roof-ridge" },
+    { "type": "mistletoe", "slot": "sign" },
+    { "type": "lantern", "slot": "front-left" },
+    { "type": "pot-plant", "slot": "counter-right" },
+    { "type": "chalkboard", "slot": "ground-left", "text": "Cure : 6 semaines" }
+  ],
+  "products": [
+    { "id": "savon-chevre-miel", "name": "Savon « Lait de chèvre & miel »", "price": "8,50 €", "image": "/demo/products/soap-honey.svg", "url": "https://example.com/savons-de-la-source/lait-de-chevre-miel", "description": "Lait de la ferme du Col et miel du Rucher des Cimes. Tout doux, pour les peaux qui tiraillent." },
+    { "id": "savon-sapin-menthe", "name": "Savon « Sapin & menthe poivrée »", "price": 8, "image": "/demo/products/soap-pine.svg", "url": "https://example.com/savons-de-la-source/sapin-menthe", "description": "Sapin baumier, menthe poivrée et un brin de sapin sur le dessus : une promenade en forêt sous la douche." },
+    { "id": "baume-calendula", "name": "Baume réparateur au calendula", "price": 14, "image": "/demo/products/balm-tin.svg", "url": "https://example.com/savons-de-la-source/baume-calendula", "description": "Beurre de karité, cire d'abeille et calendula infusé dans l'huile d'olive. Boîte de 50 ml pour les mains qui ont trop skié." },
+    { "id": "coffret-douce-nuit", "name": "Coffret « Douce nuit »", "price": 32, "image": "/demo/products/soap-gift.svg", "url": "https://example.com/savons-de-la-source/coffret-douce-nuit", "description": "Trois savons (lavande, avoine nue, sapin) et un baume à lèvres, calés dans une boîte en carton recyclé avec un brin de lavande.", "featured": true }
+  ],
+  "knowledge": {
+    "description": "Je fabrique mes savons par saponification à froid : je mélange les huiles et les beurres végétaux avec de la soude, sans jamais dépasser 35 °C. La réaction se fait doucement, et le savon garde toute sa glycérine naturelle et les bienfaits des huiles. Je surgraisse à 8 %, ce qui veut dire qu'une petite part d'huile reste libre pour nourrir la peau. Les pains sont ensuite coupés au fil, puis ils sèchent six semaines sur des claies en mélèze, dans l'ancien lavoir : c'est la cure, et c'est elle qui rend le savon doux et durable. L'eau vient de la source du Givre, juste derrière l'atelier, et les plantes (lavande, calendula, sapin, ortie, avoine) viennent de mon jardin ou des prés des voisins.\n\nAvant, je travaillais de nuit à l'hôpital de la vallée. À force de me laver les mains cent fois par nuit, ma peau a fini par craquer de partout. Une collègue m'a offert un savon fait main, au lait de chèvre, et en deux semaines mes mains allaient mieux. Ce petit savon m'a donné envie de comprendre, puis d'apprendre. En 2020, j'ai repris l'ancien lavoir de Givrelune pour y installer l'atelier. Les anciens disent que la source du Givre ne gèle jamais, même en janvier, et qu'elle porte bonheur aux mains de qui s'y lave. Je n'ai aucune preuve, mais aucune envie de prouver le contraire.\n\nChez moi, zéro plastique : les savons sont vendus nus ou dans un papier ensemencé de graines de fleurs, qu'on peut planter au printemps. Pas d'huile de palme, des ingrédients bio, et aucun test ailleurs que sur mes propres mains. Les boîtes de baume se rapportent : je les remplis de nouveau, avec 2 € de remise. Le miel vient d'Élias, du Rucher des Cimes, et le lait des chèvres de la ferme du Col. Sur chaque savon, je tamponne une petite goutte d'eau, le signe de la source. Et à chaque saison, j'envoie une lettre à qui veut la lire, pour raconter ce qui pousse et ce qui mûrit à l'atelier.",
+    "faq": [
+      { "q": "Qu'est-ce que la saponification à froid ?", "a": "C'est la façon la plus douce de faire du savon : on mélange huiles et soude sans chauffer, et on laisse le temps faire le reste. Après six semaines de cure, il ne reste plus la moindre trace de soude, seulement du savon, de la glycérine et un peu d'huile nourrissante. C'est lent, mais la peau dit merci." },
+      { "q": "Vos savons conviennent-ils aux peaux sensibles et aux enfants ?", "a": "Le savon « Lait de chèvre & miel » et le savon « Avoine nue », sans aucun parfum, conviennent aux peaux les plus sensibles et aux enfants. Les savons aux huiles essentielles, comme « Sapin & menthe », sont déconseillés aux moins de six ans et pendant la grossesse." },
+      { "q": "Comment faire durer un savon ?", "a": "Un savon à froid n'aime pas l'eau qui stagne. Pose-le sur un porte-savon qui égoutte, loin du jet de la douche, et coupe-le en deux : pendant qu'une moitié sert, l'autre continue de sécher et durcit. Bien traité, un savon dure six à huit semaines." },
+      { "q": "Livrez-vous ?", "a": "Oui, en lettre suivie, dans du papier ensemencé et du carton recyclé : 4,50 €, offert dès 35 €. Les colis partent le lundi et le jeudi, après ma tournée au lavoir." },
+      { "q": "Peut-on fabriquer son propre savon avec vous ?", "a": "Un samedi par mois, j'anime l'atelier « Fais ton savon » à l'ancien lavoir : 3 heures, 55 €, six personnes au plus. Chaque personne choisit ses huiles et ses plantes, puis récupère ses six savons six semaines plus tard, le temps de la cure. Gants et lunettes fournis : la soude ne plaisante pas." }
+    ],
+    "facts": [
+      { "topic": "ingrédients", "text": "Huiles d'olive, de coco et de colza bio, beurre de karité, sans huile de palme ; eau de la source du Givre ; huiles essentielles bio ; colorants naturels (argiles, charbon végétal, spiruline) ; miel du Rucher des Cimes et lait de chèvre de la ferme du Col." },
+      { "topic": "allergènes", "text": "Les huiles essentielles contiennent des allergènes naturels (limonène, linalol, géraniol), toujours listés sur l'étiquette. Le savon « Avoine nue » n'en contient aucun. Le baume contient de la cire d'abeille." },
+      { "topic": "prix", "text": "Les savons sont à 8 € ou 8,50 €, le baume au calendula à 14 € et le coffret « Douce nuit » à 32 €. Pour trois savons achetés, le quatrième est offert." },
+      { "topic": "horaires", "text": "Le chalet ouvre de 16 h à 22 h. L'atelier de l'ancien lavoir se visite le samedi matin, sur simple passage." }
+    ]
+  }
+}

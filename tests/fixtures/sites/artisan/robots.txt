@@ -1,0 +1,6 @@
+# Atelier Brindille
+User-agent: *
+Disallow: /brouillons/
+Allow: /
+
+Sitemap: /sitemap.xml

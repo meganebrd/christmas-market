@@ -1,0 +1,70 @@
+{
+  "id": "l-etabli-de-gaspard",
+  "order": 5,
+  "name": "L'Établi de Gaspard",
+  "tagline": "Jouets en bois tournés et peints à la main, faits pour durer cent hivers",
+  "category": "jouets",
+  "website": "https://example.com/l-etabli-de-gaspard",
+  "links": [
+    { "label": "Les coulisses de l'atelier", "url": "https://example.com/l-etabli-de-gaspard/tiktok", "kind": "tiktok" },
+    { "label": "Boutique Etsy", "url": "https://example.com/l-etabli-de-gaspard/etsy", "kind": "etsy" }
+  ],
+  "owner": {
+    "name": "Gaspard Lindqvist",
+    "role": "Ébéniste, fabricant de jouets",
+    "bio": "Fils d'un menuisier suédois et d'une enfant du pays, Gaspard fabrique des jouets en bois depuis trente ans. Il a toujours une toupie dans la poche et une blague sous le bonnet.",
+    "mood": "farceur",
+    "voicePitch": 0.78,
+    "appearance": { "skin": "#f1cdb3", "hair": "#c48a4a", "hairStyle": "short", "outfit": "apron", "outfitColor": "#6b4f3a", "outfitColor2": "#2f5d50", "scarf": "#e8c547", "hat": "bobble", "hatColor": "#b8413a", "accessory": "glasses", "beard": "#c48a4a", "height": 1.12, "build": 1.15 },
+    "greetings": [
+      "Hé, toi ! Tu sais pourquoi les casse-noisettes ne gardent jamais un secret ? Parce qu'ils ont la langue de bois ! Ha ha !",
+      "Bienvenue à l'Établi ! Touche à tout, c'est fait pour. Sauf à ma barbe, elle mord.",
+      "Psst… Si tu fais tourner la toupie rouge plus d'une minute, je te serre la main. C'est un honneur rare, demande au renne."
+    ],
+    "farewells": [
+      "Salut l'ami ! Et si tu croises un casse-noisette qui cligne de l'œil… ce n'est pas moi.",
+      "Bonne soirée ! Fais tourner les toupies, pas la tête des gens !"
+    ]
+  },
+  "chalet": {
+    "wood": "#b0845a",
+    "roof": "#4a5a3f",
+    "accent": "#b8413a",
+    "garland": "multicolor",
+    "awning": "stripes",
+    "awningColors": ["#2f5d50", "#f3ead8"],
+    "signColor": "#b8413a",
+    "signTextColor": "#fff4dc",
+    "snow": true
+  },
+  "decorations": [
+    { "type": "bunting", "slot": "roof-ridge" },
+    { "type": "nutcracker", "slot": "front-left" },
+    { "type": "teddy", "slot": "counter-right" },
+    { "type": "reindeer", "slot": "side-left" },
+    { "type": "gift-pile", "slot": "ground-left" },
+    { "type": "sled", "slot": "ground-right" }
+  ],
+  "products": [
+    { "id": "toupie-arc-en-ciel", "name": "Toupie arc-en-ciel", "price": 14, "image": "/demo/products/spinning-top.svg", "url": "https://example.com/l-etabli-de-gaspard/toupie-arc-en-ciel", "description": "Hêtre tourné, peinture à l'eau. Tient plus d'une minute quand on a le coup de poignet." },
+    { "id": "train-des-cimes", "name": "Petit train des Cimes", "price": 58, "image": "/demo/products/wooden-train.svg", "url": "https://example.com/l-etabli-de-gaspard/train-des-cimes", "description": "Locomotive et wagon aimantés en érable et noyer, chargement de blocs et d'un sapin. Dès 18 mois.", "featured": true },
+    { "id": "casse-noisette-capitaine", "name": "Casse-noisette « Capitaine Pomme »", "price": 46, "image": "/demo/products/nutcracker.svg", "url": "https://example.com/l-etabli-de-gaspard/casse-noisette-capitaine-pomme", "description": "30 cm de fière allure, et sa mâchoire casse de vraies noisettes. Chaque visage est peint à la main, aucun ne se ressemble." },
+    { "id": "puzzle-renard", "name": "Puzzle « Renard des neiges »", "price": "24,90 €", "image": "/demo/products/puzzle-fox.svg", "url": "https://example.com/l-etabli-de-gaspard/puzzle-renard-des-neiges", "description": "Quatre grosses pièces en bouleau dans leur plateau, faciles à attraper pour les petites mains. Dès 2 ans." }
+  ],
+  "knowledge": {
+    "description": "Tous mes jouets naissent sur l'établi de mon grand-père, celui qui a encore ses initiales gravées dans le coin. J'utilise du hêtre, de l'érable, du noyer et du bouleau qui viennent des forêts de la vallée et de la scierie d'en bas. Je tourne les toupies et les roues sur un tour de 1952, je ponce tout à la main jusqu'au grain 240 (le bois doit être doux comme une joue), j'assemble avec des chevilles plutôt qu'avec de la colle, et je cache les aimants à l'intérieur du bois. Pour les couleurs, uniquement des peintures à l'eau conformes à la norme jouet EN 71-3, et une finition à la cire d'abeille et à l'huile de lin. La cire, c'est Élias, du Rucher des Cimes, qui me la donne contre des toupies. Échange de bons procédés !\n\nMon père était menuisier en Dalécarlie, en Suède, le pays des petits chevaux de bois peints en rouge. Il m'a mis un canif dans la main à six ans, et je n'ai jamais arrêté. Pendant vingt ans, j'ai été ébéniste : des armoires, des tables, des buffets bien sérieux. Et puis un Noël, ma nièce m'a demandé un train. J'en ai fait un, puis dix, puis cent… Les buffets ont bien voulu m'attendre, mais je ne suis jamais revenu vers eux.\n\nMes jouets ont une « garantie cent hivers » : si l'un d'eux se casse, même dans vingt ans, rapporte-le et je le répare gratuitement. Dans chaque jouet, je cache un minuscule gland sculpté ; les enfants adorent le chercher. Chaque casse-noisette a un prénom et un petit certificat de naissance signé de ma main. Les chutes de bois partent à l'école du village, où elles deviennent des cubes de construction. Et tous les dimanches à 17 h, j'organise le championnat de toupies sur la place du Grand Sapin : le gagnant repart avec une toupie dorée… et le droit de me faire une blague.",
+    "faq": [
+      { "q": "À partir de quel âge sont vos jouets ?", "a": "Le train et le puzzle dès 18 mois et 2 ans : les pièces sont grosses et impossibles à avaler, j'ai vérifié avec mon chien. La toupie à partir de 3 ans. Le casse-noisette, lui, est un objet de décoration pour les grands : il a des petites pièces et un caractère bien trempé." },
+      { "q": "Les peintures sont-elles sans danger ?", "a": "Oui, j'utilise uniquement des peintures à l'eau conformes à la norme EN 71-3, celle des jouets pour les tout-petits, et une finition cire d'abeille et huile de lin. Un bébé peut mâchouiller son train sans souci. Le train, lui, n'aime pas trop, mais il ne se plaint jamais." },
+      { "q": "Faites-vous des jouets personnalisés ?", "a": "Bien sûr ! Je pyrograve un prénom sur le wagon pour 6 € de plus, et je peux sculpter un casse-noisette qui ressemble à ton grand-père d'après une photo, à partir de 120 € et en quatre semaines. Pour Noël, il faut commander avant le 10 décembre, après mes lutins sont en grève." },
+      { "q": "Livrez-vous ?", "a": "J'expédie en point relais sous 48 heures, 5,90 €, offert dès 60 €, emballé dans du papier kraft avec une ficelle rouge." },
+      { "q": "Comment entretenir un jouet en bois ?", "a": "Un chiffon à peine humide, jamais de trempage, et une noisette de cire d'abeille une fois par an pour qu'il brille comme au premier jour." }
+    ],
+    "facts": [
+      { "topic": "matières", "text": "Hêtre, érable, noyer et bouleau des forêts de la vallée ; peintures à l'eau norme EN 71-3 ; finition cire d'abeille du Rucher des Cimes et huile de lin ; assemblages chevillés." },
+      { "topic": "sécurité", "text": "Tous mes jouets portent le marquage CE et sont testés pour les tout-petits, sauf le casse-noisette, qui est un objet de décoration réservé aux plus de 8 ans." },
+      { "topic": "garantie", "text": "Garantie cent hivers : je répare gratuitement tous les jouets sortis de mon atelier, à vie." },
+      { "topic": "horaires", "text": "Le chalet est ouvert de 14 h à 21 h. Championnat de toupies chaque dimanche à 17 h sur la place du Grand Sapin." }
+    ]
+  }
+}
