@@ -22,13 +22,15 @@ import { Interactables } from './Interactables';
 import { LightDirector } from './LightDirector';
 import { CameraRig } from './CameraRig';
 import { SaveStore } from './save';
-import { detectQuality, type QualityProfile } from './quality';
+import { detectQuality, lowerTier, type QualityProfile, type QualityTier } from './quality';
 import { Conversations, type ConversationScript } from './Conversations';
 import { RenderPipeline } from './RenderPipeline';
 import { createLayout, type Layout } from '../world/layout';
 import { fallbackAudio, fallbackLandmarks, fallbackMarket, fallbackMinigames, fallbackNpcs, fallbackStory } from './fallbacks';
 
 import { createUI } from '../ui';
+import { h } from '../ui/dom';
+import { snowflakeSvg } from '../ui/Loading';
 import { createAudio } from '../audio';
 import { buildEnvironment } from '../world/environment';
 import { buildLandmarks } from '../world/landmarks';
@@ -85,6 +87,13 @@ export class Game implements GameContext {
   private raycaster = new THREE.Raycaster();
   private groundPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
   private pendingInteract: { id: string } | null = null;
+  /** The tier was picked by detection (not by the visitor or a URL flag): it may be lowered after a GPU crash. */
+  private autoQuality: boolean;
+  private gpuNotice: { root: HTMLElement; reload: HTMLButtonElement } | null = null;
+  private gpuTimer = 0;
+  /** Shaders are recompiling after a context restore: the simulation waits under the notice. */
+  private gpuWarming = false;
+  private lostWhileVisible = false;
 
   constructor(
     readonly canvas: HTMLCanvasElement,
@@ -96,10 +105,15 @@ export class Game implements GameContext {
     this.layout = createLayout(config);
     this.save = new SaveStore({ persist: !this.flags.has('fresh') });
     if (this.flags.has('fresh')) this.save.reset();
-    this.quality = detectQuality(this.flags.get('quality') ?? (this.save.data.settings.quality !== 'auto' ? this.save.data.settings.quality : null));
-    this.pipeline = new RenderPipeline(canvas, this.scene, this.camera, this.quality);
+    const chosen = this.flags.get('quality') ?? (this.save.data.settings.quality !== 'auto' ? this.save.data.settings.quality : null);
+    this.autoQuality = !chosen;
+    this.quality = detectQuality(chosen, this.save.flag<string>('gpuCeiling') as QualityTier | undefined);
+    // ?fixedres: no adaptive resolution (screenshots under software rendering)
+    this.pipeline = new RenderPipeline(canvas, this.scene, this.camera, this.quality, { adaptive: !this.flags.has('fixedres') });
     this.renderer = this.pipeline.renderer;
     this.renderer.info.autoReset = false;
+    this.pipeline.onContextLost = () => this.onGpuLost();
+    this.pipeline.onContextRestored = () => this.onGpuRestored();
     this.input = new Input(canvas);
     this.cameraRig = new CameraRig(this.camera);
     this.colliders.boundaryRadius = this.layout.walkRadius;
@@ -338,13 +352,78 @@ export class Game implements GameContext {
     const frame = () => {
       requestAnimationFrame(frame);
       const now = performance.now();
-      const dt = Math.min(0.05, (now - this.lastTime) / 1000);
+      const frameMs = now - this.lastTime;
+      const dt = Math.min(0.05, frameMs / 1000);
       this.lastTime = now;
-      if (document.hidden) return;
+      // hidden tab, or the GPU is away: the market waits (nobody walks blind)
+      if (document.hidden || this.pipeline.contextLost || this.gpuWarming) return;
       this.clock.elapsed += dt;
       this.tick(dt);
+      this.pipeline.adapt(frameMs, performance.now() - now);
     };
     requestAnimationFrame(frame);
+  }
+
+  // ───────────────────────────── GPU crash recovery ─────────────────────────────
+
+  /**
+   * The browser dropped the WebGL context (GPU overloaded or reset). Instead of a black screen, a
+   * notice covers the canvas until the context comes back; three.js then rebuilds its GL state.
+   */
+  private onGpuLost() {
+    this.lostWhileVisible = !document.hidden;
+    this.showGpuNotice(true);
+    this.events.emit('render:lost');
+    clearTimeout(this.gpuTimer);
+    // some browsers never give it back (or block WebGL after repeated crashes): offer a reload
+    this.gpuTimer = window.setTimeout(() => {
+      if (this.pipeline.contextLost && this.gpuNotice) this.gpuNotice.reload.hidden = false;
+    }, 8000);
+  }
+
+  private onGpuRestored() {
+    clearTimeout(this.gpuTimer);
+    // a crash while playing means this tier is too heavy for this device: next visit starts lighter
+    if (this.autoQuality && this.lostWhileVisible && this.quality.tier !== 'low') this.save.flag('gpuCeiling', lowerTier(this.quality.tier));
+    this.events.emit('render:restored');
+    // every shader must be compiled again: do it under the notice, without freezing the page
+    this.gpuWarming = true;
+    const done = () => {
+      if (!this.gpuWarming) return;
+      this.gpuWarming = false;
+      this.lastTime = performance.now();
+      requestAnimationFrame(() => requestAnimationFrame(() => this.showGpuNotice(false)));
+    };
+    const fallback = window.setTimeout(done, 6000);
+    this.renderer
+      .compileAsync(this.scene, this.camera)
+      .catch((err) => console.warn('[givrelune] shader warm-up after restore failed', err))
+      .finally(() => {
+        clearTimeout(fallback);
+        done();
+      });
+  }
+
+  private showGpuNotice(on: boolean) {
+    if (!this.gpuNotice) {
+      const reload = h('button', { class: 'gl-btn gl-btn--berry', type: 'button', hidden: true, onclick: () => location.reload() }, h('span', { text: 'Recharger le marché' }));
+      const root = h(
+        'div',
+        { class: 'gl-gpu', role: 'status', 'aria-live': 'polite' },
+        h(
+          'div',
+          { class: 'gl-gpu__box' },
+          snowflakeSvg('gl-gpu__flake'),
+          h('p', { class: 'gl-gpu__title', text: 'Les illuminations se rallument…' }),
+          h('p', { class: 'gl-gpu__text', text: 'La carte graphique a pris un coup de froid. On allège un peu les lumières pour que la promenade reste fluide.' }),
+          reload,
+        ),
+      );
+      document.body.appendChild(root);
+      this.gpuNotice = { root, reload };
+    }
+    this.gpuNotice.root.classList.toggle('is-on', on);
+    if (!on) this.gpuNotice.reload.hidden = true;
   }
 
   private tick(dt: number) {
@@ -388,7 +467,8 @@ export class Game implements GameContext {
       this.fpsAcc.time += dt;
       if (this.fpsAcc.time > 0.5) {
         const info = this.renderer.info;
-        this.fpsEl.textContent = `${Math.round(this.fpsAcc.frames / this.fpsAcc.time)} fps · ${info.render.calls} draws · ${Math.round(info.render.triangles / 1000)}k tris · ${this.quality.tier}`;
+        const pl = this.pipeline;
+        this.fpsEl.textContent = `${Math.round(this.fpsAcc.frames / this.fpsAcc.time)} fps · ${info.render.calls} draws · ${Math.round(info.render.triangles / 1000)}k tris · ${this.quality.tier} · ×${pl.pixelRatio}${pl.msaaSamples ? ` msaa${pl.msaaSamples}` : ''} · L${pl.renderLevel}`;
         this.fpsAcc = { frames: 0, time: 0 };
       }
     }
@@ -539,6 +619,22 @@ export class Game implements GameContext {
       camera: (px: number, py: number, pz: number, lx: number, ly: number, lz: number) =>
         this.cameraRig.cut(new THREE.Vector3(px, py, pz), new THREE.Vector3(lx, ly, lz)),
       info: () => ({ ...this.renderer.info.render, lights: this.lights.count, colliders: this.colliders.count(), mode: this._mode }),
+      render: () => ({
+        tier: this.quality.tier,
+        pixelRatio: this.pipeline.pixelRatio,
+        msaa: this.pipeline.msaaSamples,
+        level: this.pipeline.renderLevel,
+        contextLosses: this.pipeline.contextLosses,
+        contextLost: this.pipeline.contextLost,
+      }),
+      /** Test the GPU crash recovery: drop the WebGL context, give it back after `ms`. */
+      simulateContextLoss: (ms = 1500) => {
+        const ext = this.renderer.getContext().getExtension('WEBGL_lose_context');
+        if (!ext) return false;
+        ext.loseContext();
+        setTimeout(() => ext.restoreContext(), ms);
+        return true;
+      },
     };
     (window as any).__givrelune = api;
   }

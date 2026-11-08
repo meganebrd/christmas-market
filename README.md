@@ -58,7 +58,7 @@ Puis ouvre http://localhost:5173. Quelques raccourcis utiles :
 |---|---|
 | `/?skipIntro` | saute l'introduction |
 | `/?fresh` | repart de zéro (efface la progression) |
-| `/?debug` | affiche les fps |
+| `/?debug` | affiche les fps, la résolution rendue et le palier adaptatif |
 | `/?quality=low` | qualité « téléphone » |
 | `/editor.html` | l'Atelier des cabanes |
 

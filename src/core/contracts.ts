@@ -53,6 +53,10 @@ export type GameEvents = {
   'settings:change': Settings;
   'travel:start': { to: string };
   'travel:end': { to: string };
+  /** The GPU dropped the WebGL context (nothing can be drawn until `render:restored`). */
+  'render:lost': void;
+  /** The WebGL context is back: anything rendered only on the GPU (env maps…) must be redrawn. */
+  'render:restored': void;
 };
 
 export interface Settings {

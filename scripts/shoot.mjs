@@ -69,7 +69,9 @@ tab.on('console', (m) => {
 });
 tab.on('pageerror', (e) => errors.push(`[pageerror] ${e.message}\n${e.stack ?? ''}`));
 
-const url = `${base.replace(/\/$/, '')}/${page}${params ? '?' + params : ''}`;
+// software rendering is slow: keep the resolution fixed so screenshots stay sharp
+const query = page === 'index.html' && !/(^|&)fixedres(&|$)/.test(params) ? [params, 'fixedres'].filter(Boolean).join('&') : params;
+const url = `${base.replace(/\/$/, '')}/${page}${query ? '?' + query : ''}`;
 console.log('→', url);
 const t0 = Date.now();
 await tab.goto(url, { waitUntil: 'load', timeout: 240000 });

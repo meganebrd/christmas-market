@@ -89,6 +89,13 @@ Then: title screen (`ui.showTitle`) → visitor clicks "Entrer" (unlocks audio) 
   `ctx.quality.detail / snowCount / crowdCount`. Target < 250 draw calls, < 400k triangles on `high`.
 - Shadows only when `ctx.quality.shadows`. Bloom threshold is ~0.82 (linear): use `glow(color, 2..4)`
   for things that must glow, keep diffuse surfaces below.
+- GPU load is fill-rate bound (bloom + colour grade on HalfFloat targets). `RenderPipeline` caps the
+  pixel ratio per tier and by a pixel budget (`quality.maxPixels`), keeps MSAA for pixel ratios < 1.4
+  only (on Retina it cost ×2.5 GPU time for no visible gain), and `FrameGovernor` lowers the resolution
+  when frames stay slow, then climbs back with backoff. A GPU saturated for seconds makes the browser
+  drop the WebGL context: the pipeline then shows a notice, three.js rebuilds its state, `render:restored`
+  is emitted (redraw anything that lives only on the GPU, e.g. `refreshDuskEnv`) and the session goes
+  to a lighter level; in `auto` the next visit starts one tier lower (`save.flags.gpuCeiling`).
 
 ## Art direction
 
@@ -105,10 +112,11 @@ Fonts: "Fraunces" (titles, signs) and "Nunito" (UI text).
 - `node scripts/shoot.mjs --prefix mine- --shot "name|<js to run first>|<wait ms>"` boots the game in
   headless Chromium and writes `shots/<prefix><name>.png`; open the PNG to look at it. It prints console
   errors. Debug API in the page: `window.__givrelune` → `travelTo(zone|'stall:<id>')`, `teleport(x,z,yaw)`,
-  `camera(px,py,pz,lx,ly,lz)`, `talk(id)`, `openStall(id)`, `startMinigame(id)`, `setMode(m)`, `ctx`, `info()`.
+  `camera(px,py,pz,lx,ly,lz)`, `talk(id)`, `openStall(id)`, `startMinigame(id)`, `setMode(m)`, `ctx`, `info()`,
+  `render()` (tier, pixel ratio, MSAA, adaptive level, context losses), `simulateContextLoss(ms)`.
 - URL flags: `?skipIntro` `?autostart` `?fresh` (reset save) `?mute` `?debug` (fps) `?quality=low|medium|high`
   `?at=<zone>|stall:<id>` `?intro` (force intro) `?draft` (load the stall being edited in the editor)
-  `?charlab` (character gallery) `?tod=night` `?noassist`.
+  `?charlab` (character gallery) `?tod=night` `?noassist` `?fixedres` (no adaptive resolution; `shoot.mjs` adds it).
 - Story debug helpers: `__givrelune.ctx.story.scrubIntro(t)`, `scrubFinale(t)`, `collectAll()` (scrub only works
   when the intro is not running — click "Entrer", press Échap, then scrub).
 - Mini-game autoplay: `window.__givreluneMg = { autoplay: true, outcome: 'win' | 'lose', speed: 4 }`.

@@ -71,7 +71,7 @@ export class Preview {
 
     const q = profileFor('high');
     q.pixelRatio = Math.min(window.devicePixelRatio || 1, 1.75);
-    this.pipeline = new RenderPipeline(this.canvas, this.scene, this.camera, q);
+    this.pipeline = new RenderPipeline(this.canvas, this.scene, this.camera, q, { adaptive: false });
     this.pipeline.setBloom(0.6, 0.5, 0.85);
     this.pipeline.gradeUniforms.uVignette.value = 0.26;
     this.pipeline.renderer.shadowMap.enabled = true;
@@ -609,8 +609,7 @@ export class Preview {
     this.chalet?.dispose();
     this.rig?.dispose();
     for (const d of this.disposables) d.dispose();
-    this.pipeline.composer?.dispose();
-    this.pipeline.renderer.dispose();
+    this.pipeline.dispose();
     this.canvas.remove();
   }
 }

@@ -4,7 +4,8 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import type { QualityProfile } from './quality';
+import { MSAA_MAX_PIXEL_RATIO, renderPixelRatio, type QualityProfile } from './quality';
+import { FrameGovernor } from './FrameGovernor';
 
 /**
  * Renderer + post-processing: bloom (the illuminations!), a cosy colour grade (cool shadows,
@@ -50,50 +51,133 @@ const GradeShader = {
   `,
 };
 
+/** Render levels the adaptive resolution walks through (0 = full quality). */
+const LEVELS: { scale: number; msaa: boolean }[] = [
+  { scale: 1, msaa: true },
+  { scale: 1, msaa: false },
+  { scale: 0.85, msaa: false },
+  { scale: 0.72, msaa: false },
+];
+/** Level forced after the GPU dropped the context: no MSAA, fewer pixels. */
+const SAFE_LEVEL = 2;
+
+export interface RenderPipelineOptions {
+  /** Adapt the resolution to the frame rate (fed by `adapt()`). Default true. */
+  adaptive?: boolean;
+}
+
 export class RenderPipeline {
   readonly renderer: THREE.WebGLRenderer;
   composer: EffectComposer | null = null;
   bloom: UnrealBloomPass | null = null;
   grade: ShaderPass | null = null;
+  /** True between `webglcontextlost` and `webglcontextrestored`: nothing can be drawn. */
+  contextLost = false;
+  /** How many times the browser dropped the WebGL context this session. */
+  contextLosses = 0;
+  onContextLost: (() => void) | null = null;
+  onContextRestored: (() => void) | null = null;
+  readonly governor: FrameGovernor | null;
   private renderPass: RenderPass | null = null;
+  /** The composer target the scene is drawn into (the only one that may be multisampled). */
+  private sceneTarget: THREE.WebGLRenderTarget | null = null;
   private width = 1;
   private height = 1;
+  private pr = 1;
+  private samples = 0;
+  private dprQuery: MediaQueryList | null = null;
 
   constructor(
     canvas: HTMLCanvasElement,
     private scene: THREE.Scene,
     private camera: THREE.PerspectiveCamera,
     private quality: QualityProfile,
+    opts: RenderPipelineOptions = {},
   ) {
     this.renderer = new THREE.WebGLRenderer({
       canvas,
-      antialias: quality.antialias,
+      // the scene is drawn into the composer's target: an antialiased canvas would only cost memory
+      antialias: false,
       powerPreference: 'high-performance',
       alpha: false,
       stencil: false,
       preserveDrawingBuffer: new URLSearchParams(location.search).has('capture'),
     });
     const r = this.renderer;
-    r.setPixelRatio(quality.pixelRatio);
     r.outputColorSpace = THREE.SRGBColorSpace;
     r.toneMapping = THREE.ACESFilmicToneMapping;
     r.toneMappingExposure = 1.05;
     r.shadowMap.enabled = quality.shadows;
     r.shadowMap.type = THREE.PCFShadowMap;
+    this.governor = opts.adaptive === false ? null : new FrameGovernor({ levels: LEVELS.length });
+    // three.js listens first (it rebuilds its GL state on restore), then us
+    canvas.addEventListener('webglcontextlost', this.handleLost, false);
+    canvas.addEventListener('webglcontextrestored', this.handleRestored, false);
+    this.watchPixelRatio();
     this.setupComposer();
     this.resize();
   }
 
+  /** Pixel ratio currently rendered (after the tier cap, pixel budget and adaptive scale). */
+  get pixelRatio() {
+    return this.pr;
+  }
+
+  get msaaSamples() {
+    return this.samples;
+  }
+
+  get renderLevel() {
+    return this.governor?.level ?? 0;
+  }
+
+  /**
+   * Feed the adaptive resolution with the last frame (call once per frame from the game loop).
+   * @param frameMs time since the previous frame
+   * @param cpuMs   time the frame's JavaScript took
+   */
+  adapt(frameMs: number, cpuMs: number) {
+    if (!this.governor || this.contextLost) return;
+    if (this.governor.frame(frameMs, cpuMs, performance.now()) !== null) this.resize();
+  }
+
+  private handleLost = (e: Event) => {
+    e.preventDefault(); // tells the browser we want the context back
+    this.contextLost = true;
+    this.contextLosses++;
+    console.warn('[givrelune] the GPU dropped the WebGL context — waiting for it to come back');
+    this.onContextLost?.();
+  };
+
+  private handleRestored = () => {
+    this.contextLost = false;
+    // the GPU gave up once: lighter frames from now on so it does not happen again
+    this.governor?.atLeast(SAFE_LEVEL, performance.now());
+    this.resize();
+    this.onContextRestored?.();
+  };
+
+  /** Moving the window to another screen (Retina ↔ external display) changes devicePixelRatio. */
+  private watchPixelRatio() {
+    if (typeof matchMedia !== 'function') return;
+    this.dprQuery?.removeEventListener('change', this.onPixelRatioChange);
+    this.dprQuery = matchMedia(`(resolution: ${window.devicePixelRatio || 1}dppx)`);
+    this.dprQuery.addEventListener('change', this.onPixelRatioChange);
+  }
+
+  private onPixelRatioChange = () => {
+    this.resize();
+    this.watchPixelRatio();
+  };
+
   private setupComposer() {
-    const q = this.quality;
-    const target = new THREE.WebGLRenderTarget(1, 1, {
-      type: THREE.HalfFloatType,
-      samples: q.antialias && q.tier === 'high' ? 4 : 0,
-    });
+    const target = new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: 0 });
     this.composer = new EffectComposer(this.renderer, target);
+    // RenderPass draws into the read buffer: that one gets the MSAA samples, the other never needs them
+    this.sceneTarget = this.composer.readBuffer;
     this.renderPass = new RenderPass(this.scene, this.camera);
     this.composer.addPass(this.renderPass);
-    if (q.bloom) {
+    if (this.quality.bloom) {
       this.bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), 0.85, 0.55, 0.82);
       this.composer.addPass(this.bloom);
     }
@@ -120,20 +204,44 @@ export class RenderPipeline {
     const h = canvas.clientHeight || window.innerHeight;
     this.width = w;
     this.height = h;
+    const q = this.quality;
+    const level = LEVELS[this.governor?.level ?? 0];
+    const pr = renderPixelRatio(q, w, h, window.devicePixelRatio || 1, level.scale);
+    const samples = level.msaa && q.msaa > 0 && pr < MSAA_MAX_PIXEL_RATIO ? q.msaa : 0;
+    this.pr = pr;
+    this.renderer.setPixelRatio(pr);
     this.renderer.setSize(w, h, false);
     this.camera.aspect = w / h;
     this.camera.updateProjectionMatrix();
-    this.composer?.setPixelRatio(this.quality.pixelRatio);
+    if (this.sceneTarget && this.sceneTarget.samples !== samples) {
+      this.sceneTarget.samples = samples;
+      this.sceneTarget.dispose(); // re-allocated with the new sample count on next use
+    }
+    this.samples = samples;
+    this.composer?.setPixelRatio(pr);
     this.composer?.setSize(w, h);
     if (this.bloom) {
-      const s = this.quality.bloomScale * this.quality.pixelRatio;
+      const s = q.bloomScale * pr;
       this.bloom.setSize(Math.max(1, Math.round(w * s)), Math.max(1, Math.round(h * s)));
     }
   }
 
   render(elapsed: number) {
+    if (this.contextLost) return;
     if (this.grade) this.gradeUniforms.uTime.value = elapsed;
-    if (this.composer) this.composer.render();
-    else this.renderer.render(this.scene, this.camera);
+    if (this.composer) {
+      // passes swap buffers: make sure the scene still lands in the multisampled target
+      if (this.sceneTarget && this.composer.readBuffer !== this.sceneTarget) this.composer.swapBuffers();
+      this.composer.render();
+    } else this.renderer.render(this.scene, this.camera);
+  }
+
+  dispose() {
+    const canvas = this.renderer.domElement;
+    canvas.removeEventListener('webglcontextlost', this.handleLost, false);
+    canvas.removeEventListener('webglcontextrestored', this.handleRestored, false);
+    this.dprQuery?.removeEventListener('change', this.onPixelRatioChange);
+    this.composer?.dispose();
+    this.renderer.dispose();
   }
 }

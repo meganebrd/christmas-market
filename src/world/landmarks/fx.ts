@@ -474,6 +474,7 @@ export function canvasTexture(w: number, h: number, paint: (g: CanvasRenderingCo
 // ───────────────────────────── Dusk environment map ─────────────────────────────
 
 let envTex: THREE.Texture | null | undefined;
+let envTarget: THREE.WebGLRenderTarget | null = null;
 
 /**
  * A tiny pre-filtered environment of the blue-hour sky with warm market lights on the horizon.
@@ -482,54 +483,89 @@ let envTex: THREE.Texture | null | undefined;
 export function duskEnv(renderer: THREE.WebGLRenderer): THREE.Texture | null {
   if (envTex !== undefined) return envTex;
   try {
-    const scene = new THREE.Scene();
-    const sky = new THREE.Mesh(
-      new THREE.SphereGeometry(50, 32, 16),
-      new THREE.ShaderMaterial({
-        side: THREE.BackSide,
-        depthWrite: false,
-        uniforms: {
-          top: { value: new THREE.Color('#0b1130') },
-          mid: { value: new THREE.Color('#2a3a78') },
-          hor: { value: new THREE.Color('#e0956f') },
-          low: { value: new THREE.Color('#9aa8cf') },
-          deep: { value: new THREE.Color('#2a3463') },
-        },
-        vertexShader: `varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-        fragmentShader: `
-          uniform vec3 top, mid, hor, low, deep; varying vec3 vP;
-          void main(){
-            float y = vP.y;
-            vec3 c = mix(mid, top, smoothstep(0.15, 0.9, y));
-            c = mix(hor * (0.7 + 0.5 * smoothstep(0.0, -1.0, vP.x)), c, smoothstep(0.0, 0.22, y));
-            vec3 g = mix(low * 0.55, deep, smoothstep(0.0, -0.6, y));
-            c = y < 0.0 ? mix(hor * 0.6, g, smoothstep(0.0, -0.12, y)) : c;
-            gl_FragColor = vec4(c, 1.0);
-          }`,
-      }),
-    );
-    scene.add(sky);
-    const dot = new THREE.SphereGeometry(0.9, 8, 6);
-    const warm = new THREE.MeshBasicMaterial({ color: new THREE.Color('#ffc56b').multiplyScalar(6) });
-    for (let i = 0; i < 46; i++) {
-      const a = (i / 46) * Math.PI * 2 + Math.random() * 0.1;
-      const y = -1 + Math.random() * 6;
-      const m = new THREE.Mesh(dot, warm);
-      m.position.set(Math.sin(a) * 40, y, Math.cos(a) * 40);
-      m.scale.setScalar(0.6 + Math.random() * 0.8);
-      scene.add(m);
-    }
-    const moon = new THREE.Mesh(dot, new THREE.MeshBasicMaterial({ color: new THREE.Color('#fff4dc').multiplyScalar(4) }));
-    moon.position.set(30, 22, -14);
-    moon.scale.setScalar(2.4);
-    scene.add(moon);
-    const pm = new THREE.PMREMGenerator(renderer);
-    const rt = pm.fromScene(scene, 0.035);
-    pm.dispose();
-    envTex = rt.texture;
+    envTarget = renderDuskEnv(renderer);
+    envTex = envTarget.texture;
   } catch (err) {
     console.warn('[landmarks] env map failed', err);
     envTex = null;
   }
   return envTex;
+}
+
+/**
+ * The env map lives only on the GPU: after a WebGL context loss its pixels are gone (metals and ice
+ * would turn dark). Render it again and hand the new texture to every material of `root` using it.
+ */
+export function refreshDuskEnv(renderer: THREE.WebGLRenderer, root: THREE.Object3D) {
+  if (!envTex || !envTarget) return;
+  const old = envTex;
+  const oldTarget = envTarget;
+  try {
+    envTarget = renderDuskEnv(renderer);
+  } catch (err) {
+    console.warn('[landmarks] env map refresh failed', err);
+    return;
+  }
+  envTex = envTarget.texture;
+  root.traverse((o) => {
+    const m = (o as THREE.Mesh).material;
+    if (!m) return;
+    for (const x of Array.isArray(m) ? m : [m]) {
+      if ((x as THREE.MeshStandardMaterial).envMap === old) (x as THREE.MeshStandardMaterial).envMap = envTex!;
+    }
+  });
+  oldTarget.dispose();
+}
+
+function renderDuskEnv(renderer: THREE.WebGLRenderer): THREE.WebGLRenderTarget {
+  const scene = new THREE.Scene();
+  const sky = new THREE.Mesh(
+    new THREE.SphereGeometry(50, 32, 16),
+    new THREE.ShaderMaterial({
+      side: THREE.BackSide,
+      depthWrite: false,
+      uniforms: {
+        top: { value: new THREE.Color('#0b1130') },
+        mid: { value: new THREE.Color('#2a3a78') },
+        hor: { value: new THREE.Color('#e0956f') },
+        low: { value: new THREE.Color('#9aa8cf') },
+        deep: { value: new THREE.Color('#2a3463') },
+      },
+      vertexShader: `varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+      fragmentShader: `
+        uniform vec3 top, mid, hor, low, deep; varying vec3 vP;
+        void main(){
+          float y = vP.y;
+          vec3 c = mix(mid, top, smoothstep(0.15, 0.9, y));
+          c = mix(hor * (0.7 + 0.5 * smoothstep(0.0, -1.0, vP.x)), c, smoothstep(0.0, 0.22, y));
+          vec3 g = mix(low * 0.55, deep, smoothstep(0.0, -0.6, y));
+          c = y < 0.0 ? mix(hor * 0.6, g, smoothstep(0.0, -0.12, y)) : c;
+          gl_FragColor = vec4(c, 1.0);
+        }`,
+    }),
+  );
+  scene.add(sky);
+  const dot = new THREE.SphereGeometry(0.9, 8, 6);
+  const warm = new THREE.MeshBasicMaterial({ color: new THREE.Color('#ffc56b').multiplyScalar(6) });
+  for (let i = 0; i < 46; i++) {
+    const a = (i / 46) * Math.PI * 2 + Math.random() * 0.1;
+    const y = -1 + Math.random() * 6;
+    const m = new THREE.Mesh(dot, warm);
+    m.position.set(Math.sin(a) * 40, y, Math.cos(a) * 40);
+    m.scale.setScalar(0.6 + Math.random() * 0.8);
+    scene.add(m);
+  }
+  const moon = new THREE.Mesh(dot, new THREE.MeshBasicMaterial({ color: new THREE.Color('#fff4dc').multiplyScalar(4) }));
+  moon.position.set(30, 22, -14);
+  moon.scale.setScalar(2.4);
+  scene.add(moon);
+  const pm = new THREE.PMREMGenerator(renderer);
+  const rt = pm.fromScene(scene, 0.035);
+  pm.dispose();
+  sky.geometry.dispose();
+  (sky.material as THREE.Material).dispose();
+  dot.dispose();
+  warm.dispose();
+  (moon.material as THREE.Material).dispose();
+  return rt;
 }

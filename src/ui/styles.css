@@ -3957,3 +3957,55 @@ body {
   50% { transform: translate(calc(var(--x) * 0.5), 50vh) rotate(calc(var(--rot) * 0.5)); }
   100% { transform: translate(var(--x), 105vh) rotate(var(--rot)); opacity: 0; }
 }
+
+/* ───────────── GPU recovery (WebGL context lost → restored) ───────────── */
+.gl-gpu {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at 50% 40%, #1b2550 0%, #0b1026 70%);
+  color: var(--gl-paper);
+  font-family: var(--gl-font);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+.gl-gpu.is-on {
+  opacity: 1;
+  pointer-events: auto;
+}
+.gl-gpu__box {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 0 24px;
+  max-width: 420px;
+}
+.gl-gpu__flake {
+  width: 44px;
+  height: 44px;
+  color: #ffd99a;
+  animation: gl-gpu-spin 3.2s linear infinite;
+}
+.gl-gpu__title {
+  margin: 0;
+  font: 600 22px/1.25 var(--gl-font-title);
+}
+.gl-gpu__text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+  opacity: 0.8;
+}
+.gl-gpu .gl-btn[hidden] {
+  display: none;
+}
+@keyframes gl-gpu-spin {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gl-gpu__flake { animation: none; }
+}

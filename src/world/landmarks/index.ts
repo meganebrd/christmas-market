@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import type { GameContext, LandmarksApi } from '../../core/contracts';
 import type { ZoneId } from '../../config/types';
-import { fxTime } from './fx';
+import { fxTime, refreshDuskEnv } from './fx';
 import { Frame, type Anchors } from './kit';
 import { buildTree } from './tree';
 import { buildArch } from './arch';
@@ -82,6 +82,9 @@ export function buildLandmarks(ctx: GameContext): LandmarksApi {
       console.error(`[landmarks] ${id} failed`, err);
     }
   }
+
+  // the GPU dropped and gave back the WebGL context: the reflections must be rendered again
+  ctx.events.on('render:restored', () => refreshDuskEnv(ctx.renderer, ctx.scene));
 
   ctx.addSystem((dt, t) => {
     fxTime.value = t;

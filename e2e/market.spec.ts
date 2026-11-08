@@ -91,3 +91,21 @@ test('touch devices get a joystick and an action button', async ({ page }, info)
   await expect(page.locator('.gl-action')).toBeVisible();
   expect(errors).toEqual([]);
 });
+
+test('the market recovers when the GPU drops the WebGL context', async ({ page }, info) => {
+  test.skip(info.project.name === 'mobile', 'same code path as desktop');
+  const errors = await boot(page, 'skipIntro&fresh&mute');
+  const gl = () => page.evaluate(() => (window as any).__givrelune.render());
+  expect(await page.evaluate(() => (window as any).__givrelune.simulateContextLoss(1500))).toBe(true);
+  // a notice covers the canvas instead of a black screen…
+  await expect(page.locator('.gl-gpu.is-on')).toBeVisible({ timeout: 5_000 });
+  expect((await gl()).contextLost).toBe(true);
+  // …until the context is back, shaders rebuilt and the market drawn again
+  await expect(page.locator('.gl-gpu.is-on')).toHaveCount(0, { timeout: 30_000 });
+  const after = await gl();
+  expect(after.contextLost).toBe(false);
+  expect(after.contextLosses).toBe(1);
+  expect(after.level).toBeGreaterThanOrEqual(2); // lighter frames from now on
+  expect(await mode(page)).toBe('explore');
+  expect(errors).toEqual([]);
+});
